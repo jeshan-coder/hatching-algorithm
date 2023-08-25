@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_0d882fd40ffb1372f5cd2d8cc629ea09 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    
+                    <style>
+                        .foliumtooltip {
+                            
+                        }
+                       .foliumtooltip table{
+                            margin: auto;
+                        }
+                        .foliumtooltip tr{
+                            text-align: left;
+                        }
+                        .foliumtooltip th{
+                            padding: 2px; padding-right: 8px;
+                        }
+                    </style>
+            
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_0d882fd40ffb1372f5cd2d8cc629ea09" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_0d882fd40ffb1372f5cd2d8cc629ea09 = L.map(
+                "map_0d882fd40ffb1372f5cd2d8cc629ea09",
+                {
+                    center: [27.63070204124304, 85.52115037384354],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 10,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+            L.control.scale().addTo(map_0d882fd40ffb1372f5cd2d8cc629ea09);
+
+            
+
+        
+    
+            var tile_layer_9f9f4dd7728bac62de9cca4f0f494651 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {"attribution": "Esri", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_0d882fd40ffb1372f5cd2d8cc629ea09);
+        
+    
+            map_0d882fd40ffb1372f5cd2d8cc629ea09.fitBounds(
+                [[27.62748460967423, 85.51636894471831], [27.63391947281185, 85.52593180296878]],
+                {}
+            );
+        
+    
+        function geo_json_3bfa83c8c5f756cc77260e2d615e66eb_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"fillOpacity": 0.5, "weight": 2};
+            }
+        }
+        function geo_json_3bfa83c8c5f756cc77260e2d615e66eb_highlighter(feature) {
+            switch(feature.id) {
+                default:
+                    return {"fillOpacity": 0.75};
+            }
+        }
+        function geo_json_3bfa83c8c5f756cc77260e2d615e66eb_pointToLayer(feature, latlng) {
+            var opts = {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3};
+            
+            let style = geo_json_3bfa83c8c5f756cc77260e2d615e66eb_styler(feature)
+            Object.assign(opts, style)
+            
+            return new L.CircleMarker(latlng, opts)
+        }
+
+        function geo_json_3bfa83c8c5f756cc77260e2d615e66eb_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        geo_json_3bfa83c8c5f756cc77260e2d615e66eb.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_3bfa83c8c5f756cc77260e2d615e66eb_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_3bfa83c8c5f756cc77260e2d615e66eb = L.geoJson(null, {
+                onEachFeature: geo_json_3bfa83c8c5f756cc77260e2d615e66eb_onEachFeature,
+            
+                style: geo_json_3bfa83c8c5f756cc77260e2d615e66eb_styler,
+                pointToLayer: geo_json_3bfa83c8c5f756cc77260e2d615e66eb_pointToLayer
+        });
+
+        function geo_json_3bfa83c8c5f756cc77260e2d615e66eb_add (data) {
+            geo_json_3bfa83c8c5f756cc77260e2d615e66eb
+                .addData(data)
+                .addTo(map_0d882fd40ffb1372f5cd2d8cc629ea09);
+        }
+            geo_json_3bfa83c8c5f756cc77260e2d615e66eb_add({"bbox": [85.51636894471831, 27.62748460967423, 85.52593180296878, 27.63391947281185], "features": [{"bbox": [85.52560268814214, 27.62748460967423, 85.52560268814214, 27.62748460967423], "geometry": {"coordinates": [85.52560268814214, 27.62748460967423], "type": "Point"}, "id": "0", "properties": {"amenity": "school", "name": "Baylor International Academy school"}, "type": "Feature"}, {"bbox": [85.52084040048804, 27.6334932330315, 85.52084040048804, 27.6334932330315], "geometry": {"coordinates": [85.52084040048804, 27.6334932330315], "type": "Point"}, "id": "1", "properties": {"amenity": "place_of_worship", "name": "Wasinkhyah Bahi Baha place_of_worship"}, "type": "Feature"}, {"bbox": [85.52254777264505, 27.630903533462515, 85.52254777264505, 27.630903533462515], "geometry": {"coordinates": [85.52254777264505, 27.630903533462515], "type": "Point"}, "id": "2", "properties": {"amenity": "school", "name": "Aadarsha Vidya Mandir School school"}, "type": "Feature"}, {"bbox": [85.52166207858266, 27.63134479105336, 85.52166207858266, 27.63134479105336], "geometry": {"coordinates": [85.52166207858266, 27.63134479105336], "type": "Point"}, "id": "3", "properties": {"amenity": "school", "name": "Bagmati English Secondary School school"}, "type": "Feature"}, {"bbox": [85.52202768474382, 27.631508211452186, 85.52202768474382, 27.631508211452186], "geometry": {"coordinates": [85.52202768474382, 27.631508211452186], "type": "Point"}, "id": "4", "properties": {"amenity": "school", "name": "Sawaswoti Lower Secondary School school"}, "type": "Feature"}, {"bbox": [85.52151695526916, 27.628765986739978, 85.52151695526916, 27.628765986739978], "geometry": {"coordinates": [85.52151695526916, 27.628765986739978], "type": "Point"}, "id": "5", "properties": {"amenity": "school", "name": "Gyan Jyoti English Secondary School school"}, "type": "Feature"}, {"bbox": [85.51944386669688, 27.629516749010985, 85.51944386669688, 27.629516749010985], "geometry": {"coordinates": [85.51944386669688, 27.629516749010985], "type": "Point"}, "id": "6", "properties": {"amenity": "place_of_worship", "name": "Bodhicharya Bihar place_of_worship"}, "type": "Feature"}, {"bbox": [85.52065043942606, 27.629456050306338, 85.52065043942606, 27.629456050306338], "geometry": {"coordinates": [85.52065043942606, 27.629456050306338], "type": "Point"}, "id": "7", "properties": {"amenity": "school", "name": "Ram Bhakta Memorial School school"}, "type": "Feature"}, {"bbox": [85.52240838582374, 27.62885917995477, 85.52240838582374, 27.62885917995477], "geometry": {"coordinates": [85.52240838582374, 27.62885917995477], "type": "Point"}, "id": "8", "properties": {"amenity": "restaurant", "name": "HNK heaven resturant restaurant"}, "type": "Feature"}, {"bbox": [85.52188762387156, 27.631860206724593, 85.52188762387156, 27.631860206724593], "geometry": {"coordinates": [85.52188762387156, 27.631860206724593], "type": "Point"}, "id": "9", "properties": {"amenity": "place_of_worship", "name": "chandeshwori temple place_of_worship"}, "type": "Feature"}, {"bbox": [85.51795350035574, 27.632211649814646, 85.51795350035574, 27.632211649814646], "geometry": {"coordinates": [85.51795350035574, 27.632211649814646], "type": "Point"}, "id": "10", "properties": {"amenity": "school", "name": "bal batika school"}, "type": "Feature"}, {"bbox": [85.52368503940082, 27.628392876677218, 85.52368503940082, 27.628392876677218], "geometry": {"coordinates": [85.52368503940082, 27.628392876677218], "type": "Point"}, "id": "11", "properties": {"amenity": "school", "name": "Millenium College school"}, "type": "Feature"}, {"bbox": [85.52593180296878, 27.633242691578065, 85.52593180296878, 27.633242691578065], "geometry": {"coordinates": [85.52593180296878, 27.633242691578065], "type": "Point"}, "id": "12", "properties": {"amenity": "school", "name": "jyoti academy block2 school"}, "type": "Feature"}, {"bbox": [85.5250190985099, 27.630966078958174, 85.5250190985099, 27.630966078958174], "geometry": {"coordinates": [85.5250190985099, 27.630966078958174], "type": "Point"}, "id": "13", "properties": {"amenity": "restaurant", "name": "KN banquet restaurant"}, "type": "Feature"}, {"bbox": [85.51942920274291, 27.63391947281185, 85.51942920274291, 27.63391947281185], "geometry": {"coordinates": [85.51942920274291, 27.63391947281185], "type": "Point"}, "id": "14", "properties": {"amenity": "place_of_worship", "name": "Ashok Stupa place_of_worship"}, "type": "Feature"}, {"bbox": [85.5211385335221, 27.6298697375454, 85.5211385335221, 27.6298697375454], "geometry": {"coordinates": [85.5211385335221, 27.6298697375454], "type": "Point"}, "id": "15", "properties": {"amenity": "bus_station", "name": "Bus Park Banepa bus_station"}, "type": "Feature"}, {"bbox": [85.51922514918782, 27.6334505005314, 85.51922514918782, 27.6334505005314], "geometry": {"coordinates": [85.51922514918782, 27.6334505005314], "type": "Point"}, "id": "16", "properties": {"amenity": "school", "name": "Shikshya Sadan H.S.S school"}, "type": "Feature"}, {"bbox": [85.52080947777839, 27.63177200707319, 85.52080947777839, 27.63177200707319], "geometry": {"coordinates": [85.52080947777839, 27.63177200707319], "type": "Point"}, "id": "17", "properties": {"amenity": "cinema", "name": "Mayur Cinema cinema"}, "type": "Feature"}, {"bbox": [85.51636894471831, 27.629566161863522, 85.51636894471831, 27.629566161863522], "geometry": {"coordinates": [85.51636894471831, 27.629566161863522], "type": "Point"}, "id": "18", "properties": {"amenity": "school", "name": "Vidhya Sagar English Secondary School school"}, "type": "Feature"}, {"bbox": [85.5241195130205, 27.630266148688396, 85.5241195130205, 27.630266148688396], "geometry": {"coordinates": [85.5241195130205, 27.630266148688396], "type": "Point"}, "id": "19", "properties": {"amenity": "bank", "name": "ID development bank bank"}, "type": "Feature"}, {"bbox": [85.51849760277564, 27.632820312049624, 85.51849760277564, 27.632820312049624], "geometry": {"coordinates": [85.51849760277564, 27.632820312049624], "type": "Point"}, "id": "20", "properties": {"amenity": "hospital", "name": "Banepa Hospital hospital"}, "type": "Feature"}, {"bbox": [85.52436366552656, 27.63283765711534, 85.52436366552656, 27.63283765711534], "geometry": {"coordinates": [85.52436366552656, 27.63283765711534], "type": "Point"}, "id": "21", "properties": {"amenity": "school", "name": "GyanSarovar English Secondary School school"}, "type": "Feature"}, {"bbox": [85.52227454999999, 27.6325519, 85.52227454999999, 27.6325519], "geometry": {"coordinates": [85.52227454999999, 27.6325519], "type": "Point"}, "id": "22", "properties": {"amenity": "place_of_worship", "name": "chandeshwori temple place_of_worship"}, "type": "Feature"}, {"bbox": [85.52099765187657, 27.63383216750138, 85.52099765187657, 27.63383216750138], "geometry": {"coordinates": [85.52099765187657, 27.63383216750138], "type": "Point"}, "id": "23", "properties": {"amenity": "place_of_worship", "name": "chandeshwori temple place_of_worship"}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+    geo_json_3bfa83c8c5f756cc77260e2d615e66eb.bindTooltip(
+    function(layer){
+    let div = L.DomUtil.create('div');
+    
+    let handleObject = feature=>typeof(feature)=='object' ? JSON.stringify(feature) : feature;
+    let fields = ["amenity", "name"];
+    let aliases = ["amenity", "name"];
+    let table = '<table>' +
+        String(
+        fields.map(
+        (v,i)=>
+        `<tr>
+            <th>${aliases[i]}</th>
+            
+            <td>${handleObject(layer.feature.properties[v])}</td>
+        </tr>`).join(''))
+    +'</table>';
+    div.innerHTML=table;
+    
+    return div
+    }
+    ,{"className": "foliumtooltip", "sticky": true});
+                     
+</script>
+</html>
